@@ -1,0 +1,55 @@
+{
+  "project_info": {
+    "project_number": "660174823855",
+    "firebase_url": "https://zasfood-ff281.firebaseio.com",
+    "project_id": "zasfood-ff281",
+    "storage_bucket": "zasfood-ff281.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:660174823855:android:bbb5f933bb012fa9",
+        "android_client_info": {
+          "package_name": "zasfood.ec.edu.espol.zasfood"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "660174823855-9u6hsdd0s8lns7496ttes1s6fh6bp4gn.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "zasfood.ec.edu.espol.zasfood",
+            "certificate_hash": "f0f8ce31297d9cea7b865d4a29e485262cdec631"
+          }
+        },
+        {
+          "client_id": "660174823855-q0b5jhlnrnnoaaa2agb2nra2ovcnn539.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDLMLDCkCG5KD5PxIOlk9vu9rxdLJKeRN0"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 2,
+          "other_platform_oauth_client": [
+            {
+              "client_id": "660174823855-q0b5jhlnrnnoaaa2agb2nra2ovcnn539.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
