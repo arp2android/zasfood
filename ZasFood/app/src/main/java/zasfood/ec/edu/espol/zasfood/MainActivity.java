@@ -1,8 +1,10 @@
 package zasfood.ec.edu.espol.zasfood;
 
+import android.net.Uri;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
+import android.support.v4.widget.TextViewCompat;
 import android.view.View;
 import android.support.design.widget.NavigationView;
 import android.support.v4.view.GravityCompat;
@@ -12,6 +14,10 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.widget.ImageView;
+import android.widget.TextView;
+
+import com.squareup.picasso.Picasso;
 
 public class MainActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
@@ -40,6 +46,21 @@ public class MainActivity extends AppCompatActivity
 
         NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(this);
+
+        String name = getIntent().getStringExtra("name");
+        String email = getIntent().getStringExtra("email");
+        Uri imageUri = getIntent().getParcelableExtra("imageUri");
+
+        View v = navigationView.getHeaderView(0);
+
+        TextView nameScreen = v.findViewById(R.id.user);
+        TextView emailScreen = v.findViewById(R.id.userEmail);
+        ImageView user = v.findViewById(R.id.userProfile);
+        nameScreen.setText(name);
+        emailScreen.setText(email);
+        Picasso.with(this).load(imageUri).placeholder(R.mipmap.ic_launcher)
+                .error(R.mipmap.ic_launcher).into(user);
+
     }
 
     @Override

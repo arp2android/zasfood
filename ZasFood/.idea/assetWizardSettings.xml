@@ -23,7 +23,7 @@
                                           <PersistentState>
                                             <option name="values">
                                               <map>
-                                                <entry key="scalingPercent" value="52" />
+                                                <entry key="scalingPercent" value="54" />
                                               </map>
                                             </option>
                                           </PersistentState>
@@ -35,9 +35,9 @@
                                     <map>
                                       <entry key="backgroundAssetType" value="COLOR" />
                                       <entry key="backgroundColor" value="ffffff" />
-                                      <entry key="foregroundImage" value="C:\Users\Municipio de Gye\Pictures\Saved Pictures\Data\Twitter_Icon.png" />
-                                      <entry key="foregroundLayerName" value="twitter_login" />
-                                      <entry key="outputName" value="twitter" />
+                                      <entry key="foregroundImage" value="C:\Users\Joven Ejemplar_2\Downloads\loo.png" />
+                                      <entry key="foregroundLayerName" value="logo_a" />
+                                      <entry key="outputName" value="logo" />
                                     </map>
                                   </option>
                                 </PersistentState>
@@ -51,6 +51,11 @@
                 </map>
               </option>
             </PersistentState>
+          </value>
+        </entry>
+        <entry key="vectorWizard">
+          <value>
+            <PersistentState />
           </value>
         </entry>
       </map>
