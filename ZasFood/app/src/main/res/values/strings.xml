@@ -24,4 +24,15 @@
 
     <string name="facebook_app_id">2130880897175884</string>
     <string name="fb_login_protocol_scheme">fb2130880897175884</string>
+
+    <string name="desafio">Desafíos</string>
+    <string name="Ruta">Ver ruta</string>
+    <string name="Cupones">Cupones</string>
+    <string name="setting">Configuraciones</string>
+    <string name="share">Compartir</string>
+    <string name="About">Acerca de</string>
+
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="title_activity_maps">Map</string>
 </resources>

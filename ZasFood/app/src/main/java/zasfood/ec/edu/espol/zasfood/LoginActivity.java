@@ -3,6 +3,7 @@ package zasfood.ec.edu.espol.zasfood;
 import android.animation.Animator;
 import android.animation.AnimatorListenerAdapter;
 import android.annotation.TargetApi;
+import android.app.Activity;
 import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.support.annotation.NonNull;
@@ -63,12 +64,13 @@ public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<
     private View mProgressView;
     private View mLoginFormView;
     private ImageView fb;
-
+    public static Activity loginActivity;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
+        loginActivity = this;
 
         mAuth = FirebaseAuth.getInstance();
 
@@ -119,6 +121,7 @@ public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<
             String name = user.getDisplayName();
             String email = user.getEmail();
             Uri photoUrl = user.getPhotoUrl();
+            System.out.println("aaaaaaaa"+photoUrl);
             loadUI(name, email, photoUrl);
             //boolean emailVerified = user.isEmailVerified();
             //String uid = user.getUid();

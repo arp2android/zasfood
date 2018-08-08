@@ -1,9 +1,12 @@
 package zasfood.ec.edu.espol.zasfood;
 
+import android.graphics.Color;
 import android.net.Uri;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
+import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentTransaction;
 import android.support.v4.widget.TextViewCompat;
 import android.view.View;
 import android.support.design.widget.NavigationView;
@@ -22,11 +25,16 @@ import com.squareup.picasso.Picasso;
 public class MainActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
 
+    Fragment fragment = null;
+    Toolbar toolbar;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
+        LoginActivity.loginActivity.finish();
+        toolbar = (Toolbar) findViewById(R.id.toolbar);
+        toolbar.setTitleTextColor(Color.rgb(118, 215, 247));
         setSupportActionBar(toolbar);
 
         FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
@@ -42,6 +50,7 @@ public class MainActivity extends AppCompatActivity
         ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(
                 this, drawer, toolbar, R.string.navigation_drawer_open, R.string.navigation_drawer_close);
         drawer.addDrawerListener(toggle);
+        toggle.getDrawerArrowDrawable().setColor(Color.rgb(118, 215, 247));
         toggle.syncState();
 
         NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
@@ -101,21 +110,28 @@ public class MainActivity extends AppCompatActivity
         // Handle navigation view item clicks here.
         int id = item.getItemId();
 
-        if (id == R.id.nav_camera) {
-            // Handle the camera action
-        } else if (id == R.id.nav_gallery) {
-
-        } else if (id == R.id.nav_slideshow) {
-
-        } else if (id == R.id.nav_manage) {
-
-        } else if (id == R.id.nav_share) {
-
-        } else if (id == R.id.nav_send) {
-
+        if (id == R.id.mapa) {
+            toolbar.setTitle(R.string.Ruta);
+            fragment = new RutaFragment();
+        } else if (id == R.id.reto) {
+            toolbar.setTitle(R.string.desafio);
+            fragment = new RetoFragment();
+        } else if (id == R.id.cupon) {
+            toolbar.setTitle(R.string.Cupones);
+        } else if (id == R.id.ajustes) {
+            toolbar.setTitle(R.string.setting);
+        } else if (id == R.id.share) {
+            toolbar.setTitle(R.string.share);
+        } else if (id == R.id.about) {
+            toolbar.setTitle(R.string.About);
+        }
+        if(fragment != null){
+            FragmentTransaction ft = getSupportFragmentManager().beginTransaction();
+            ft.replace(R.id.content_main, fragment);
+            ft.commit();
         }
 
-        DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
+        DrawerLayout drawer = findViewById(R.id.drawer_layout);
         drawer.closeDrawer(GravityCompat.START);
         return true;
     }
