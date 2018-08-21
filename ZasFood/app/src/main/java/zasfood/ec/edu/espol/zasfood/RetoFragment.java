@@ -13,9 +13,11 @@ import android.view.ViewGroup;
 import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.firebase.ui.database.FirebaseRecyclerAdapter;
 import com.firebase.ui.database.FirebaseRecyclerOptions;
+import com.google.firebase.database.ChildEventListener;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -82,6 +84,33 @@ public class RetoFragment extends Fragment {
         cumplidos.setLayoutManager(new LinearLayoutManager(this.getContext()));
         DatabaseReference db = FirebaseDatabase.getInstance().getReference()
                 .child("users").child(MainActivity.idUser).child("retos");
+
+        db.addChildEventListener(new ChildEventListener() {
+            @Override
+            public void onChildAdded(@NonNull DataSnapshot dataSnapshot, @Nullable String s) {
+                Toast.makeText(MainActivity.c, "Reto cumplido", Toast.LENGTH_SHORT).show();
+            }
+
+            @Override
+            public void onChildChanged(@NonNull DataSnapshot dataSnapshot, @Nullable String s) {
+
+            }
+
+            @Override
+            public void onChildRemoved(@NonNull DataSnapshot dataSnapshot) {
+
+            }
+
+            @Override
+            public void onChildMoved(@NonNull DataSnapshot dataSnapshot, @Nullable String s) {
+
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError databaseError) {
+
+            }
+        });
         FirebaseRecyclerOptions<String> options =
                 new FirebaseRecyclerOptions.Builder<String>()
                         .setQuery(db, String.class).build();

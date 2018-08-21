@@ -4,6 +4,7 @@ import android.location.Geocoder;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
+import android.support.design.widget.FloatingActionButton;
 import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -36,6 +37,16 @@ public class RutaFragment extends Fragment {
     View view;
     List<Marker> localMar = new LinkedList<>();
     List<Marker> retoMar = new LinkedList<>();
+    List<Marker> retoMarC = new LinkedList<>();
+    FloatingActionButton bt_lo;
+    FloatingActionButton bt_re;
+    FloatingActionButton bt_ub;
+    FloatingActionButton bt_op;
+    FloatingActionButton bt_rec;
+    boolean estado = true;
+    boolean esLocal = true;
+    boolean esReto = true;
+    boolean esRetoC = true;
 
     public RutaFragment() {
         // Required empty public constructor
@@ -46,7 +57,75 @@ public class RutaFragment extends Fragment {
         this.view = view;
         geocoder = new Geocoder(this.getContext());
         mapFragment = (SupportMapFragment) getChildFragmentManager().findFragmentById(R.id.map_location);
+        bt_lo = view.findViewById(R.id.bt_lo);
+        bt_re = view.findViewById(R.id.bt_re);
+        bt_rec = view.findViewById(R.id.bt_rec);
+        bt_ub = view.findViewById(R.id.bt_ub);
+        bt_op = view.findViewById(R.id.bt_op);
 
+        bt_op.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                if(!estado){
+                    bt_ub.setVisibility(View.VISIBLE);
+                    bt_re.setVisibility(View.VISIBLE);
+                    bt_rec.setVisibility(View.VISIBLE);
+                    bt_lo.setVisibility(View.VISIBLE);
+                    estado = true;
+                }else {
+                    bt_ub.setVisibility(View.INVISIBLE);
+                    bt_re.setVisibility(View.INVISIBLE);
+                    bt_rec.setVisibility(View.INVISIBLE);
+                    bt_lo.setVisibility(View.INVISIBLE);
+                    estado = false;
+                }
+            }
+        });
+
+        bt_lo.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+
+                for(Marker m: localMar){
+                    if(esLocal){
+                        m.setVisible(false);
+                    }else{
+                        m.setVisible(true);
+                    }
+                }
+                esLocal = !esLocal;
+            }
+        });
+
+        bt_re.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+
+                for(Marker m: retoMar){
+                    if(esReto){
+                        m.setVisible(false);
+                    }else{
+                        m.setVisible(true);
+                    }
+                }
+                esReto = !esReto;
+            }
+        });
+
+        bt_rec.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+
+                for(Marker m: retoMarC){
+                    if(esRetoC){
+                        m.setVisible(false);
+                    }else{
+                        m.setVisible(true);
+                    }
+                }
+                esRetoC = !esRetoC;
+            }
+        });
     }
 
     @Override
@@ -82,6 +161,83 @@ public class RutaFragment extends Fragment {
                         }
                     });
 
+                    FirebaseDatabase.getInstance().getReference()
+                            .child("retos")
+                            .addValueEventListener(new ValueEventListener() {
+                                @Override
+                                public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                                    for(DataSnapshot ds: dataSnapshot.getChildren()){
+                                        final Reto reto = ds.getValue(Reto.class);
+                                            final String k = ds.getKey();
+                                        if(reto != null){
+                                            FirebaseDatabase.getInstance().getReference()
+                                                    .child("users").child(MainActivity.idUser)
+                                                    .addValueEventListener(new ValueEventListener() {
+                                                        @Override
+                                                        public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                                                            User user = dataSnapshot.getValue(User.class);
+                                                            if(user != null ){
+                                                                if(user.getRetos().contains(k)){
+                                                                    FirebaseDatabase.getInstance().getReference()
+                                                                            .child("locales").child(reto.getIdLocal()+"")
+                                                                            .addValueEventListener(new ValueEventListener() {
+                                                                                @Override
+                                                                                public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                                                                                    Local local = dataSnapshot.getValue(Local.class);
+                                                                                    if(local != null)
+                                                                                        addMarker(
+                                                                                                new LatLng(local.getLat(),
+                                                                                                        local.getLon()), reto.getReto(),
+                                                                                                R.drawable.ic_star_on, false);
+                                                                                }
+
+                                                                                @Override
+                                                                                public void onCancelled(@NonNull DatabaseError databaseError) {
+
+                                                                                }
+                                                                            });
+                                                                }else{
+                                                                    FirebaseDatabase.getInstance().getReference()
+                                                                            .child("locales").child(reto.getIdLocal()+"")
+                                                                            .addValueEventListener(new ValueEventListener() {
+                                                                                @Override
+                                                                                public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                                                                                    Local local = dataSnapshot.getValue(Local.class);
+                                                                                    if(local != null)
+                                                                                        addMarker(
+                                                                                                new LatLng(local.getLat(),
+                                                                                                        local.getLon()), reto.getReto(),
+                                                                                                R.drawable.ic_star_of, false);
+                                                                                }
+
+                                                                                @Override
+                                                                                public void onCancelled(@NonNull DatabaseError databaseError) {
+
+                                                                                }
+                                                                            });
+                                                                }
+
+                                                            }
+                                                        }
+
+                                                        @Override
+                                                        public void onCancelled(@NonNull DatabaseError databaseError) {
+
+                                                        }
+                                                    });
+
+                                        }
+                                    }
+                                }
+
+                                @Override
+                                public void onCancelled(@NonNull DatabaseError databaseError) {
+
+                                }
+                            });
+
+
+
                 }
             });
         }
@@ -99,8 +255,10 @@ public class RutaFragment extends Fragment {
         );
         if(iconID == R.drawable.ic_local)
             localMar.add(marker);
-        else if(iconID == R.drawable.ic_star_of || iconID == R.drawable.ic_star_on)
+        else if(iconID == R.drawable.ic_star_of)
             retoMar.add(marker);
+        else if(iconID == R.drawable.ic_star_on)
+            retoMarC.add(marker);
         if(moveCam) {
             mMap.moveCamera(CameraUpdateFactory.newLatLng(place));
             mMap.animateCamera(CameraUpdateFactory.newLatLngZoom(place, 17));

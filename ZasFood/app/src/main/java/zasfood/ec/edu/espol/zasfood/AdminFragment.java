@@ -73,7 +73,7 @@ public class AdminFragment extends Fragment {
                         Toast.makeText(AdminFragment.this.getContext(),
                                 "Por favor llene todoas los campos", Toast.LENGTH_SHORT).show();
                     else{
-                        crearReto(Integer.parseInt(id), getFecha(inicio), getFecha(fin), re);
+                        crearReto(Integer.parseInt(id), getFecha(inicio), getFecha(fin), re, cu);
                         clear();
                         Toast.makeText(AdminFragment.this.getContext(),
                                 "Creado con exito", Toast.LENGTH_SHORT).show();
@@ -83,7 +83,7 @@ public class AdminFragment extends Fragment {
                         Toast.makeText(AdminFragment.this.getContext(),
                                 "Por favor llene todoas los campos", Toast.LENGTH_SHORT).show();
                     else {
-                        crearReto(Integer.parseInt(id), getFecha(inicio), getFecha(fin), re);
+                        crearReto(Integer.parseInt(id), getFecha(inicio), getFecha(fin), re, "");
                         clear();
                         Toast.makeText(AdminFragment.this.getContext(),
                                 "Creado con exito", Toast.LENGTH_SHORT).show();
@@ -93,8 +93,8 @@ public class AdminFragment extends Fragment {
         });
     }
 
-    private void crearReto(int i, String fecha, String fecha1, String re) {
-        Reto reto = new Reto(i, re, fecha, fecha1);
+    private void crearReto(int i, String fecha, String fecha1, String re, String cu) {
+        Reto reto = new Reto(i, re, fecha, fecha1, cu);
         FirebaseDatabase.getInstance().getReference()
                 .child("retos").push().setValue(reto);
     }

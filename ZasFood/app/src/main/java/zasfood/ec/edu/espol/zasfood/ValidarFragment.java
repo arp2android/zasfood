@@ -8,6 +8,7 @@ import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AutoCompleteTextView;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
@@ -27,7 +28,7 @@ import java.util.List;
  */
 public class ValidarFragment extends Fragment {
 
-    private EditText email;
+    private AutoCompleteTextView email;
     private EditText idReto;
     private Button ok;
 
@@ -67,8 +68,13 @@ public class ValidarFragment extends Fragment {
 
                                 }
                             }
-                            if(user != null && key != null)
+                            if(user != null && key != null){
                                 query.child(key).child("retos").setValue(user.getRetos());
+                                Toast.makeText(ValidarFragment.this.getContext(),
+                                        "Acción exitosa", Toast.LENGTH_SHORT).show();
+                                email.setText("");
+                                idReto.setText("");
+                            }
                         }
 
                         @Override
@@ -76,6 +82,7 @@ public class ValidarFragment extends Fragment {
 
                         }
                     });
+
                 }
             }
         });

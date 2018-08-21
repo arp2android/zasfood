@@ -1,5 +1,6 @@
 package zasfood.ec.edu.espol.zasfood;
 
+import android.content.Context;
 import android.graphics.Color;
 import android.net.Uri;
 import android.os.Bundle;
@@ -18,6 +19,7 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.squareup.picasso.Picasso;
 
@@ -31,6 +33,15 @@ public class MainActivity extends AppCompatActivity
     public static RutaFragment rutaView = new RutaFragment();
     public static RetoFragment retos = new RetoFragment();
     public static String idUser;
+    public static Context c;
+
+    @Override
+    protected void onStart() {
+        super.onStart();
+        FragmentTransaction ft = getSupportFragmentManager().beginTransaction();
+        ft.replace(R.id.content_main, new RutaFragment());
+        ft.commit();
+    }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -40,15 +51,8 @@ public class MainActivity extends AppCompatActivity
         toolbar = (Toolbar) findViewById(R.id.toolbar);
         toolbar.setTitleTextColor(Color.rgb(118, 215, 247));
         setSupportActionBar(toolbar);
-
-        FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
-        fab.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
-                        .setAction("Action", null).show();
-            }
-        });
+        c = this;
+        toolbar.setTitle(R.string.Ruta);
 
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(
@@ -66,7 +70,6 @@ public class MainActivity extends AppCompatActivity
         idUser = getIntent().getStringExtra("id");
 
         View v = navigationView.getHeaderView(0);
-
         TextView nameScreen = v.findViewById(R.id.user);
         TextView emailScreen = v.findViewById(R.id.userEmail);
         ImageView user = v.findViewById(R.id.userProfile);
@@ -89,8 +92,7 @@ public class MainActivity extends AppCompatActivity
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
-        // Inflate the menu; this adds items to the action bar if it is present.
-        getMenuInflater().inflate(R.menu.main, menu);
+
         return true;
     }
 
@@ -123,6 +125,7 @@ public class MainActivity extends AppCompatActivity
             fragment = retos;
         } else if (id == R.id.cupon) {
             toolbar.setTitle(R.string.Cupones);
+            fragment = new CuponFragment();
         } else if (id == R.id.ajustes) {
             toolbar.setTitle(R.string.setting);
         } else if (id == R.id.share) {

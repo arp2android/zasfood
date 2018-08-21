@@ -7,16 +7,18 @@ public class Reto {
     private String reto;
     private String inicio;
     private String fin;
+    private String cupon;
 
     public Reto() {
         //vacio
     }
 
-    public Reto(int idLocal, String reto, String inicio, String fin) {
+    public Reto(int idLocal, String reto, String inicio, String fin, String cupon) {
         this.idLocal = idLocal;
         this.reto = reto;
         this.inicio = inicio;
         this.fin = fin;
+        this.cupon = cupon;
     }
 
     public int getIdLocal() {
@@ -51,6 +53,14 @@ public class Reto {
         this.fin = fin;
     }
 
+    public String getCupon() {
+        return cupon;
+    }
+
+    public void setCupon(String cupon) {
+        this.cupon = cupon;
+    }
+
     @Override
     public String toString() {
         return "Reto{" +
@@ -58,6 +68,7 @@ public class Reto {
                 ", reto='" + reto + '\'' +
                 ", inicio='" + inicio + '\'' +
                 ", fin='" + fin + '\'' +
+                ", cupon=" + cupon +
                 '}';
     }
 

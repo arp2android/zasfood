@@ -57,12 +57,24 @@
                                 <PersistentState>
                                   <option name="children">
                                     <map>
+                                      <entry key="backgroundImage">
+                                        <value>
+                                          <PersistentState>
+                                            <option name="values">
+                                              <map>
+                                                <entry key="scalingPercent" value="40" />
+                                                <entry key="trimmed" value="true" />
+                                              </map>
+                                            </option>
+                                          </PersistentState>
+                                        </value>
+                                      </entry>
                                       <entry key="foregroundImage">
                                         <value>
                                           <PersistentState>
                                             <option name="values">
                                               <map>
-                                                <entry key="scalingPercent" value="54" />
+                                                <entry key="scalingPercent" value="59" />
                                               </map>
                                             </option>
                                           </PersistentState>
@@ -72,21 +84,18 @@
                                   </option>
                                   <option name="values">
                                     <map>
-                                      <entry key="backgroundAssetType" value="COLOR" />
                                       <entry key="backgroundColor" value="ffffff" />
-                                      <entry key="foregroundImage" value="C:\Users\Joven Ejemplar_2\Downloads\loo.png" />
-                                      <entry key="foregroundLayerName" value="logo_a" />
-                                      <entry key="outputName" value="logo" />
+                                      <entry key="backgroundImage" value="C:\Users\Joven Ejemplar_2\Pictures\transparente.png" />
+                                      <entry key="backgroundLayerName" value="fondo_background" />
+                                      <entry key="foregroundImage" value="C:\Users\Joven Ejemplar_2\Pictures\bandera.png" />
+                                      <entry key="foregroundLayerName" value="fondo" />
+                                      <entry key="outputName" value="fondos" />
+                                      <entry key="previewDensity" value="XXXHIGH" />
                                     </map>
                                   </option>
                                 </PersistentState>
                               </value>
                             </entry>
-                          </map>
-                        </option>
-                        <option name="values">
-                          <map>
-                            <entry key="outputIconType" value="ACTIONBAR" />
                           </map>
                         </option>
                       </PersistentState>
