@@ -54,32 +54,32 @@ public final class R {
     public static final class id {
         public static final int adjust_height = 0x7f08001d;
         public static final int adjust_width = 0x7f08001e;
-        public static final int auto = 0x7f080024;
-        public static final int dark = 0x7f08004a;
-        public static final int icon_only = 0x7f080073;
-        public static final int light = 0x7f08007e;
-        public static final int none = 0x7f080094;
-        public static final int standard = 0x7f0800d1;
-        public static final int wide = 0x7f0800f7;
+        public static final int auto = 0x7f080025;
+        public static final int dark = 0x7f08004e;
+        public static final int icon_only = 0x7f080079;
+        public static final int light = 0x7f08008c;
+        public static final int none = 0x7f0800a2;
+        public static final int standard = 0x7f0800df;
+        public static final int wide = 0x7f08010a;
     }
     public static final class string {
-        public static final int common_google_play_services_enable_button = 0x7f0d003e;
-        public static final int common_google_play_services_enable_text = 0x7f0d003f;
-        public static final int common_google_play_services_enable_title = 0x7f0d0040;
-        public static final int common_google_play_services_install_button = 0x7f0d0041;
-        public static final int common_google_play_services_install_text = 0x7f0d0042;
-        public static final int common_google_play_services_install_title = 0x7f0d0043;
-        public static final int common_google_play_services_notification_channel_name = 0x7f0d0044;
-        public static final int common_google_play_services_notification_ticker = 0x7f0d0045;
-        public static final int common_google_play_services_unsupported_text = 0x7f0d0047;
-        public static final int common_google_play_services_update_button = 0x7f0d0048;
-        public static final int common_google_play_services_update_text = 0x7f0d0049;
-        public static final int common_google_play_services_update_title = 0x7f0d004a;
-        public static final int common_google_play_services_updating_text = 0x7f0d004b;
-        public static final int common_google_play_services_wear_update_text = 0x7f0d004c;
-        public static final int common_open_on_phone = 0x7f0d004d;
-        public static final int common_signin_button_text = 0x7f0d004e;
-        public static final int common_signin_button_text_long = 0x7f0d004f;
+        public static final int common_google_play_services_enable_button = 0x7f0d0040;
+        public static final int common_google_play_services_enable_text = 0x7f0d0041;
+        public static final int common_google_play_services_enable_title = 0x7f0d0042;
+        public static final int common_google_play_services_install_button = 0x7f0d0043;
+        public static final int common_google_play_services_install_text = 0x7f0d0044;
+        public static final int common_google_play_services_install_title = 0x7f0d0045;
+        public static final int common_google_play_services_notification_channel_name = 0x7f0d0046;
+        public static final int common_google_play_services_notification_ticker = 0x7f0d0047;
+        public static final int common_google_play_services_unsupported_text = 0x7f0d0049;
+        public static final int common_google_play_services_update_button = 0x7f0d004a;
+        public static final int common_google_play_services_update_text = 0x7f0d004b;
+        public static final int common_google_play_services_update_title = 0x7f0d004c;
+        public static final int common_google_play_services_updating_text = 0x7f0d004d;
+        public static final int common_google_play_services_wear_update_text = 0x7f0d004e;
+        public static final int common_open_on_phone = 0x7f0d004f;
+        public static final int common_signin_button_text = 0x7f0d0050;
+        public static final int common_signin_button_text_long = 0x7f0d0051;
     }
     public static final class styleable {
         public static final int[] LoadingImageView = { 0x7f030060, 0x7f0300d3, 0x7f0300d4 };

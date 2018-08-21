@@ -38,6 +38,7 @@ import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.database.FirebaseDatabase;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -121,18 +122,17 @@ public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<
             String name = user.getDisplayName();
             String email = user.getEmail();
             Uri photoUrl = user.getPhotoUrl();
-            System.out.println("aaaaaaaa"+photoUrl);
-            loadUI(name, email, photoUrl);
-            //boolean emailVerified = user.isEmailVerified();
-            //String uid = user.getUid();
+            String id = user.getUid();
+            loadUI(name, email, photoUrl, id);
         }
     }
 
-    private void loadUI(String name, String email, Uri imageUri) {
+    private void loadUI(String name, String email, Uri imageUri, String id) {
         Intent intent = new Intent(LoginActivity.this, MainActivity.class);
         intent.putExtra("name", name);
         intent.putExtra("email", email);
         intent.putExtra("imageUri", imageUri);
+        intent.putExtra("id", id);
         startActivity(intent);
     }
 
@@ -145,6 +145,14 @@ public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<
                             showProgress(false);
                             Log.d(TAG, "signInWithEmail:success");
                             FirebaseUser user = mAuth.getCurrentUser();
+                            if(user != null){
+                                String name = user.getDisplayName();
+                                if(name == null)
+                                    name = "";
+                                FirebaseDatabase.getInstance().getReference()
+                                        .child("users").child(user.getUid())
+                                        .setValue(new User(name, user.getEmail()));
+                            }
                             updateUI(user);
                         }else {
                             Log.w(TAG, "signInWithEmail:failure", task.getException());

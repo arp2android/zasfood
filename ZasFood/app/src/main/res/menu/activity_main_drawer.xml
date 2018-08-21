@@ -28,6 +28,14 @@
             android:id="@+id/about"
             android:icon="@drawable/ic_abaut_icon"
             android:title="@string/About" />
+        <item
+            android:id="@+id/administrar"
+            android:icon="@drawable/ic_admin"
+            android:title="@string/Admin"/>
+        <item
+            android:id="@+id/verificar"
+            android:icon="@drawable/ic_youtube_searched_for_black_24dp"
+            android:title="@string/Veri"/>
     </group>
 
 

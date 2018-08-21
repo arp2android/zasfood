@@ -7,7 +7,6 @@ import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentTransaction;
-import android.support.v4.widget.TextViewCompat;
 import android.view.View;
 import android.support.design.widget.NavigationView;
 import android.support.v4.view.GravityCompat;
@@ -22,11 +21,16 @@ import android.widget.TextView;
 
 import com.squareup.picasso.Picasso;
 
+import java.util.LinkedList;
+
 public class MainActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
 
     Fragment fragment = null;
     Toolbar toolbar;
+    public static RutaFragment rutaView = new RutaFragment();
+    public static RetoFragment retos = new RetoFragment();
+    public static String idUser;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -59,6 +63,7 @@ public class MainActivity extends AppCompatActivity
         String name = getIntent().getStringExtra("name");
         String email = getIntent().getStringExtra("email");
         Uri imageUri = getIntent().getParcelableExtra("imageUri");
+        idUser = getIntent().getStringExtra("id");
 
         View v = navigationView.getHeaderView(0);
 
@@ -112,10 +117,10 @@ public class MainActivity extends AppCompatActivity
 
         if (id == R.id.mapa) {
             toolbar.setTitle(R.string.Ruta);
-            fragment = new RutaFragment();
+            fragment = rutaView;
         } else if (id == R.id.reto) {
             toolbar.setTitle(R.string.desafio);
-            fragment = new RetoFragment();
+            fragment = retos;
         } else if (id == R.id.cupon) {
             toolbar.setTitle(R.string.Cupones);
         } else if (id == R.id.ajustes) {
@@ -124,6 +129,12 @@ public class MainActivity extends AppCompatActivity
             toolbar.setTitle(R.string.share);
         } else if (id == R.id.about) {
             toolbar.setTitle(R.string.About);
+        }else if (id == R.id.administrar){
+            toolbar.setTitle(R.string.Admin);
+            fragment = new AdminFragment();
+        }else if (id == R.id.verificar){
+            toolbar.setTitle(R.string.Veri);
+            fragment = new ValidarFragment();
         }
         if(fragment != null){
             FragmentTransaction ft = getSupportFragmentManager().beginTransaction();

@@ -3,60 +3,70 @@ package zasfood.ec.edu.espol.zasfood;
 import java.time.LocalDate;
 
 public class Reto {
-    private Hueca local;
-    private String descripcioon;
-    private LocalDate fi;
-    private LocalDate ff;
+    private int idLocal;
+    private String reto;
+    private String inicio;
+    private String fin;
 
     public Reto() {
+        //vacio
     }
 
-    public Reto(Hueca local, String descripcioon, LocalDate fi, LocalDate ff) {
-        this.local = local;
-        this.descripcioon = descripcioon;
-        this.fi = fi;
-        this.ff = ff;
+    public Reto(int idLocal, String reto, String inicio, String fin) {
+        this.idLocal = idLocal;
+        this.reto = reto;
+        this.inicio = inicio;
+        this.fin = fin;
     }
 
-    public Hueca getLocal() {
-        return local;
+    public int getIdLocal() {
+        return idLocal;
     }
 
-    public void setLocal(Hueca local) {
-        this.local = local;
+    public void setIdLocal(int idLocal) {
+        this.idLocal = idLocal;
     }
 
-    public String getDescripcioon() {
-        return descripcioon;
+    public String getReto() {
+        return reto;
     }
 
-    public void setDescripcioon(String descripcioon) {
-        this.descripcioon = descripcioon;
+    public void setReto(String reto) {
+        this.reto = reto;
     }
 
-    public LocalDate getFi() {
-        return fi;
+    public String getInicio() {
+        return inicio;
     }
 
-    public void setFi(LocalDate fi) {
-        this.fi = fi;
+    public void setInicio(String inicio) {
+        this.inicio = inicio;
     }
 
-    public LocalDate getFf() {
-        return ff;
+    public String getFin() {
+        return fin;
     }
 
-    public void setFf(LocalDate ff) {
-        this.ff = ff;
+    public void setFin(String fin) {
+        this.fin = fin;
     }
 
     @Override
     public String toString() {
         return "Reto{" +
-                "local=" + local +
-                ", descripcioon='" + descripcioon + '\'' +
-                ", fi=" + fi +
-                ", ff=" + ff +
+                "idLocal=" + idLocal +
+                ", reto='" + reto + '\'' +
+                ", inicio='" + inicio + '\'' +
+                ", fin='" + fin + '\'' +
                 '}';
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if(!(o instanceof Reto))
+            return false;
+        Reto r = (Reto)o;
+        return r.inicio.equals(inicio) && r.fin.equals(fin)
+                && r.idLocal == idLocal && r.reto.equals(reto);
     }
 }
